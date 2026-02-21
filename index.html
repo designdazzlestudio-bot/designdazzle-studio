@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
@@ -32,29 +33,46 @@
 </header>
 
 <!-- HERO / INTRO SECTION -->
+ 
 <section class="hero" id="home">
-    <div class="hero-left">
-        <p class="small-text">CREATIVE PORTFOLIO OF</p>
-        <h1>Wasib Hussain <br> Shah</h1>
-        <h3 class="purple-text">Graphic Designer • Video Editor • Web Developer</h3>
-        <p class="hero-desc">
-            An experienced graphic designer specializing in graphic designing, video editing,
-            and web development. I create bold, creative visual branding, UI-focused web projects,
-            and high-quality video editing that brings stories to life.
-        </p>
-        <div class="hero-buttons">
-            <button class="btn primary">View Portfolio →</button>
-            <button class="btn outline">View Services</button>
-        </div>
-    </div>
+    <!-- Background Video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-    <div class="hero-right">
-        <div class="profile-frame">
-            <img src="image.jpg" alt="Wasib Hussain Shah">
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <div class="hero-left">
+            <p class="small-text animate delay-1">CREATIVE PORTFOLIO OF</p>
+
+            <h1 class="animate delay-2">
+                Wasib Hussain <br> Shah
+            </h1>
+
+            <h3 class="purple-text animate delay-3">
+                <span id="typing-text"></span>
+            </h3>
+
+            <p class="hero-desc animate delay-4">
+                An experienced graphic designer specializing in graphic designing, video editing,
+                and web development. I create bold, creative visual branding, UI-focused web projects,
+                and high-quality video editing that brings stories to life.
+            </p>
+
+            <div class="hero-buttons animate delay-5">
+                <a href="#portfolio" class="btn primary">View Portfolio →</a>
+                <a href="#services" class="btn outline">View Services</a>
+            </div>
+        </div>
+
+        <div class="hero-right animate delay-6">
+            <div class="profile-frame">
+                <img src="image.jpg" alt="Wasib Hussain Shah">
+            </div>
         </div>
     </div>
 </section>
-
 <!-- ABOUT SECTION -->
 <section id="about" class="container about-section">
     <div class="header-group">

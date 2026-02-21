@@ -152,3 +152,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+document.addEventListener("DOMContentLoaded", function () {
+
+    const skills = [
+        "Graphic Designer",
+        "Video Editor",
+        "Web Developer"
+    ];
+
+    const typingText = document.getElementById("typing-text");
+
+    let skillIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentSkill = skills[skillIndex];
+        
+        if (!isDeleting) {
+            typingText.textContent = currentSkill.substring(0, charIndex + 1);
+            charIndex++;
+
+            if (charIndex === currentSkill.length) {
+                setTimeout(() => isDeleting = true, 1200);
+            }
+        } else {
+            typingText.textContent = currentSkill.substring(0, charIndex - 1);
+            charIndex--;
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                skillIndex = (skillIndex + 1) % skills.length;
+            }
+        }
+
+        const speed = isDeleting ? 60 : 100;
+        setTimeout(typeEffect, speed);
+    }
+
+    setTimeout(typeEffect, 1500); // delay after hero animation
+});
