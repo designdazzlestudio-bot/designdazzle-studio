@@ -74,6 +74,37 @@ a {
 .hire-btn:hover {
   background: #6b35d6;
 }
+/* ===== MOBILE RESPONSIVE NAVBAR ===== */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 5%;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .hire-btn {
+    margin-top: 10px;
+    display: inline-block;
+  }
+}
 
 /* ===== HERO / INTRO SECTION ===== */
 /* Hero Section */
@@ -281,6 +312,54 @@ html {
   white-space: nowrap;
   overflow: hidden;
 }
+/* ===== EXTRA MOBILE OPTIMIZATION ===== */
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 60px 5%;
+    min-height: auto;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-left h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin: 0 auto;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+    margin-right: 0;
+  }
+
+  .profile-frame {
+    width: 200px;
+    border-width: 4px;
+  }
+
+  .small-text {
+    font-size: 12px;
+  }
+
+}
 
 /* ===== ABOUT SECTION - UPDATED ===== */
 :root {
@@ -434,6 +513,50 @@ html {
         margin: 0 auto;
     }
 }
+/* ===== EXTRA MOBILE OPTIMIZATION FOR ABOUT ===== */
+
+@media (max-width: 600px) {
+
+    .about-section {
+        padding: 60px 15px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .about-grid {
+        gap: 30px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+        gap: 20px;
+    }
+
+    .stat-card,
+    .specialties-box {
+        padding: 20px;
+    }
+
+    .stat-card h3 {
+        font-size: 1.6rem;
+    }
+
+    .specialties-box li {
+        font-size: 0.85rem;
+    }
+
+    .contact-link {
+        justify-content: center;
+    }
+
+}
 
 /* ===== SKILLS & EXPERIENCES SECTION ===== */
 .skills-section {
@@ -549,7 +672,54 @@ html {
         padding: 25px;
     }
 }
+/* ===== IMPROVED RESPONSIVE ===== */
 
+/* Tablet */
+@media (max-width: 992px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .skills-section {
+        padding: 60px 15px;
+    }
+
+    .skills-section .section-title {
+        font-size: 1.8rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .skill-card {
+        padding: 22px;
+        min-height: auto;
+    }
+
+    .card-header {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .icon-box {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .skill-card li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+}
 
 /* Section 3: Timeline */
 .timeline {
