@@ -1,14 +1,14 @@
-## Design Dazzle Studio
+### Design Dazzle Studio
 
 A modern, responsive business website for Design Dazzle Studio, offering affordable website development and graphic design services.
 
-# About
+## About
 
 Design Dazzle Studio provides affordable digital services with a focus on clean design, responsive websites, and creative branding.
 
 The platform has been running since 2023 and is owned by Wasib Hussain Shah, a Software Engineering student.
 
-# Features
+## Features
 
 Premium, modern agency-style design
 
@@ -24,7 +24,7 @@ Graphic design and logo design services
 
 Social media post design
 
-# Project showcase
+## Project showcase
 
 Project enquiry/order form
 
