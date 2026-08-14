@@ -1,4 +1,4 @@
-Design Dazzle Studio
+## Design Dazzle Studio
 
 A modern, responsive business website for Design Dazzle Studio, offering affordable website development and graphic design services.
 
