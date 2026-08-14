@@ -1,14 +1,14 @@
-### Design Dazzle Studio
+## Design Dazzle Studio
 
 A modern, responsive business website for Design Dazzle Studio, offering affordable website development and graphic design services.
 
-## About
+### About
 
 Design Dazzle Studio provides affordable digital services with a focus on clean design, responsive websites, and creative branding.
 
 The platform has been running since 2023 and is owned by Wasib Hussain Shah, a Software Engineering student.
 
-## Features
+### Features
 
 Premium, modern agency-style design
 
@@ -24,7 +24,7 @@ Graphic design and logo design services
 
 Social media post design
 
-## Project showcase
+### Project showcase
 
 Project enquiry/order form
 
@@ -40,7 +40,7 @@ Custom logo loading screen
 
 Mobile-friendly forms and modal windows
 
-Project Structure
+### Project Structure
 
 Design-Dazzle-Studio/
 │
@@ -62,7 +62,7 @@ Design-Dazzle-Studio/
         ├── project2.jpg
         └── project3.jpg
 
-## Pages
+### Pages
 
 Home — Introduction and featured services.
 
@@ -76,7 +76,7 @@ About — Studio history, owner information, and experience.
 
 Contact — Project requirements and contact options.
 
-Technologies
+### Technologies
 
 HTML5
 
@@ -92,7 +92,7 @@ WhatsApp click-to-chat
 
 No frontend framework is required.
 
-Responsive Design
+### Responsive Design
 
 The website is designed for:
 
@@ -124,7 +124,7 @@ Number of pages
 
 Selected package
 
-Additional project details
+### Additional project details
 
 The information can then be sent to WhatsApp for discussion.
 
@@ -146,7 +146,7 @@ The website uses a clickable email link:
     designdazzlestudio27@gmail.com
 </a>
 
-Social Media
+### Social Media
 
 The footer supports:
 
@@ -156,15 +156,11 @@ Facebook
 
 Instagram
 
-Replace the placeholder profile URLs with the official Design Dazzle Studio accounts.
-
-Loader
+### Loader
 
 The website includes a custom loading screen using the Design Dazzle Studio logo.
 
-You can replace the logo image/path used by the loader with your own logo.
-
-Customization
+### Customization
 
 Main styling is located in:
 
@@ -188,28 +184,7 @@ in a web browser.
 
 For development, VS Code Live Server can also be used.
 
-GitHub Pages
-
-To deploy:
-
-Upload the project to a GitHub repository.
-
-Open Settings.
-
-Select Pages.
-
-Select the required branch.
-
-Select the root folder.
-
-Save.
-
-Use relative paths such as:
-
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/main.js"></script>
-
-Services
+### Services
 
 Website Development
 
@@ -239,7 +214,7 @@ Promotional designs
 
 Business branding
 
-Owner
+### Owner
 
 Wasib Hussain Shah
 
@@ -249,7 +224,7 @@ Design Dazzle Studio has been operating since 2023. The owner is currently enrol
 
 The studio also worked with Cyber IT International Academy for four months as a graphic designer.
 
-Goal
+### Goal
 
 To provide affordable, professional, modern websites and graphic design services for individuals, startups, businesses, organizations, and growing brands.
 
