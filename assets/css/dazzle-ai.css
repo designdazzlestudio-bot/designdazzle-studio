@@ -1,0 +1,806 @@
+/* =========================================================
+   DAZZLE AI ASSISTANT — Design Dazzle Studio
+   Premium responsive widget / glowing assistant launcher
+   ========================================================= */
+
+:root {
+  --dai-ink: #11131a;
+  --dai-muted: #666b78;
+  --dai-line: #e6e7ed;
+  --dai-paper: #ffffff;
+  --dai-soft: #f7f7fb;
+  --dai-purple: #7057ff;
+  --dai-purple-2: #a855f7;
+  --dai-shadow: 0 24px 70px rgba(17, 19, 26, .18);
+  --dai-glow: 0 0 0 1px rgba(112, 87, 255, .08), 0 0 28px rgba(112, 87, 255, .22), 0 12px 36px rgba(112, 87, 255, .16);
+}
+
+/* Floating launcher */
+.dazzle-ai-launcher {
+  position: fixed;
+  right: 10px;
+  bottom: 110px;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff 0%, #f8f5ff 48%, #eeeaff 100%);
+  box-shadow: var(--dai-glow);
+  cursor: pointer;
+  z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.dazzle-ai-launcher:hover {
+  transform: translateY(-3px) scale(1.03)
+}
+
+.dazzle-ai-launcher:focus-visible {
+  outline: 3px solid rgba(112, 87, 255, .35);
+  outline-offset: 4px
+}
+
+.dazzle-ai-launcher::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(112, 87, 255, .22), rgba(168, 85, 247, .10) 42%, transparent 70%);
+  filter: blur(7px);
+  z-index: -1;
+  animation: daiPulse 2.4s ease-in-out infinite;
+}
+
+.dazzle-ai-launcher::after {
+  content: "✦";
+  position: absolute;
+  top: -5px;
+  right: 0;
+  color: #8c67ff;
+  font-size: 15px;
+  text-shadow: 0 0 12px rgba(112, 87, 255, .8);
+  animation: daiTwinkle 1.8s ease-in-out infinite;
+}
+
+.dazzle-ai-avatar {
+  width: 40px;
+  height: 62px;
+  ;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(112, 87, 255, .35));
+  animation: daiFloat 3.6s ease-in-out infinite;
+}
+
+.dazzle-ai-bubbles {
+  position: absolute;
+  inset: -22px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.dai-bubble {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(168, 85, 247, .28);
+  box-shadow: 0 0 12px rgba(112, 87, 255, .65);
+  opacity: 0;
+  animation: daiBubble 3.8s ease-in-out infinite;
+}
+
+.dai-bubble:nth-child(1) {
+  left: 4%;
+  bottom: 30%;
+  animation-delay: 0s
+}
+
+.dai-bubble:nth-child(2) {
+  left: 18%;
+  top: 4%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 1s
+}
+
+.dai-bubble:nth-child(3) {
+  right: 4%;
+  top: 24%;
+  width: 9px;
+  height: 9px;
+  animation-delay: 1.8s
+}
+
+.dai-bubble:nth-child(4) {
+  right: 19%;
+  bottom: 1%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 2.6s
+}
+
+.dai-bubble:nth-child(5) {
+  left: 35%;
+  top: -7%;
+  width: 6px;
+  height: 6px;
+  animation-delay: .55s
+}
+
+.dai-bubble:nth-child(6) {
+  right: -2%;
+  bottom: 36%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 2.15s
+}
+
+.dazzle-ai-tooltip {
+  position: absolute;
+  right: 84px;
+  bottom: 15px;
+  white-space: nowrap;
+  background: var(--dai-ink);
+  color: #fff;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font: 600 12px/1 "DM Sans", sans-serif;
+  box-shadow: 0 10px 28px rgba(17, 19, 26, .18);
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: .2s ease;
+}
+
+.dazzle-ai-launcher:hover .dazzle-ai-tooltip,
+.dazzle-ai-launcher:focus-visible .dazzle-ai-tooltip {
+  opacity: 1;
+  transform: none
+}
+
+/* =========================================================
+   DAZZLE AI PANEL — KEEP BELOW WEBSITE NAVBAR
+   ========================================================= */
+
+.dazzle-ai-panel {
+  position: fixed !important;
+
+  right: 24px;
+
+  /* Keep chatbot below the website header */
+  top: 90px;
+
+  bottom: 24px;
+
+  width: min(410px, calc(100vw - 32px));
+
+  /* Height automatically fits between header and bottom */
+  height: auto;
+
+  min-height: 0;
+
+  max-height: none;
+
+  background: var(--dai-paper);
+
+  border: 1px solid rgba(232, 233, 237, .95);
+
+  border-radius: 22px;
+
+  box-shadow: var(--dai-shadow);
+
+  overflow: hidden;
+
+  z-index: 999999 !important;
+
+  display: flex;
+
+  flex-direction: column;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(16px) scale(.98);
+
+  transform-origin: bottom right;
+
+  transition:
+    opacity .22s ease,
+    transform .22s ease,
+    visibility .22s ease;
+}
+
+.dazzle-ai-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.dai-header {
+  flex: 0 0 auto;
+  min-height: 76px;
+  padding: 14px 14px 14px 16px;
+  background: var(--dai-ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.dai-header-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--dai-purple), var(--dai-purple-2));
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-shadow: 0 0 22px rgba(112, 87, 255, .28);
+  flex: 0 0 auto;
+}
+
+.dai-header-avatar img {
+  width: 39px;
+  height: 39px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, .25));
+}
+
+.dai-head-copy {
+  min-width: 0;
+  flex: 1
+}
+
+.dai-head-copy strong {
+  display: block;
+  font: 700 16px/1.1 "Space Grotesk", sans-serif;
+  letter-spacing: -.2px;
+}
+
+.dai-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  color: #cfd1d9;
+  font: 500 10px/1.1 "DM Sans", sans-serif;
+}
+
+.dai-status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #42df83;
+  box-shadow: 0 0 9px rgba(66, 223, 131, .8);
+}
+
+.dai-head-actions {
+  display: flex;
+  gap: 7px
+}
+
+.dai-icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: #242733;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .18s ease;
+}
+
+.dai-icon-btn:hover {
+  background: #303341;
+  transform: translateY(-1px)
+}
+
+.dai-icon-btn:focus-visible {
+  outline: 2px solid #a99bff;
+  outline-offset: 2px
+}
+
+.dai-messages {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 14px 12px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(168, 85, 247, .07), transparent 28%),
+    #fff;
+  scroll-behavior: smooth;
+}
+
+.dai-welcome {
+  border: 1px solid var(--dai-line);
+  border-radius: 16px;
+  padding: 15px 14px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(17, 19, 26, .035);
+  margin-bottom: 12px;
+}
+
+.dai-welcome strong {
+  font: 700 15px/1.2 "Space Grotesk", sans-serif
+}
+
+.dai-welcome p {
+  margin: 7px 0 0;
+  color: var(--dai-muted);
+  font: 400 12px/1.55 "DM Sans", sans-serif;
+}
+
+.dai-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 13px;
+}
+
+.dai-quick button {
+  appearance: none;
+  border: 1px solid #dcd7ff;
+  background: #faf9ff;
+  color: #4d3fc2;
+  border-radius: 999px;
+  padding: 8px 11px;
+  min-height: 34px;
+  cursor: pointer;
+  font: 700 11px/1 "DM Sans", sans-serif;
+  transition: .18s ease;
+}
+
+.dai-quick button:hover {
+  background: #f1eeff;
+  border-color: #c9c1ff;
+  transform: translateY(-1px)
+}
+
+.dai-quick button:focus-visible {
+  outline: 2px solid #a99bff;
+  outline-offset: 2px
+}
+
+.dai-message {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  animation: daiMessageIn .22s ease both;
+}
+
+.dai-message.user {
+  justify-content: flex-end
+}
+
+.dai-msg-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  flex: 0 0 30px;
+  background: linear-gradient(135deg, var(--dai-purple), var(--dai-purple-2));
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.dai-msg-avatar img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain
+}
+
+.dai-bubble-msg {
+  max-width: 82%;
+  border: 1px solid var(--dai-line);
+  border-radius: 15px 15px 15px 5px;
+  padding: 10px 12px;
+  background: #fff;
+  color: #272a33;
+  box-shadow: 0 5px 18px rgba(17, 19, 26, .04);
+  font: 400 12.5px/1.55 "DM Sans", sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.dai-message.user .dai-bubble-msg {
+  color: #fff;
+  border-color: transparent;
+  border-radius: 15px 15px 5px 15px;
+  background: linear-gradient(135deg, var(--dai-purple), var(--dai-purple-2));
+  box-shadow: 0 8px 22px rgba(112, 87, 255, .18);
+}
+
+.dai-msg-time {
+  display: block;
+  margin-top: 5px;
+  opacity: .58;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.dai-typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  min-width: 48px;
+}
+
+.dai-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8c80ff;
+  animation: daiTyping 1s infinite;
+}
+
+.dai-typing span:nth-child(2) {
+  animation-delay: .12s
+}
+
+.dai-typing span:nth-child(3) {
+  animation-delay: .24s
+}
+
+.dai-composer {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--dai-line);
+  background: #fff;
+  padding: 9px 10px 8px;
+}
+
+.dai-form {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9d5ff;
+  border-radius: 16px;
+  padding: 4px;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(112, 87, 255, .045);
+}
+
+.dai-input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--dai-ink);
+  padding: 10px 8px;
+  font: 500 12px/1.3 "DM Sans", sans-serif;
+}
+
+.dai-input::placeholder {
+  color: #9296a2
+}
+
+.dai-send {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--dai-purple), var(--dai-purple-2));
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(112, 87, 255, .2);
+  transition: .18s ease;
+}
+
+.dai-send:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08)
+}
+
+.dai-send:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none
+}
+
+.dai-send svg {
+  width: 18px;
+  height: 18px
+}
+
+.dai-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px 0;
+}
+
+.dai-clear {
+  border: 0;
+  background: none;
+  padding: 3px 0;
+  color: #767a86;
+  cursor: pointer;
+  font: 600 10px "DM Sans", sans-serif;
+}
+
+.dai-clear:hover {
+  color: var(--dai-ink)
+}
+
+.dai-powered {
+  color: #9699a4;
+  font: 500 9px "DM Sans", sans-serif;
+}
+
+.dai-powered b {
+  color: var(--dai-purple)
+}
+
+.dai-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  color: #5d47e9;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dai-project-link:hover {
+  text-decoration: underline
+}
+
+/* Toast */
+.dai-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 176px;
+  z-index: 2147483001;
+  max-width: 330px;
+  background: var(--dai-ink);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 13px;
+  box-shadow: 0 14px 35px rgba(17, 19, 26, .22);
+  font: 600 11px/1.4 "DM Sans", sans-serif;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: .2s ease;
+}
+
+.dai-toast.show {
+  opacity: 1;
+  transform: none
+}
+
+/* animations */
+@keyframes daiPulse {
+
+  0%,
+  100% {
+    transform: scale(.92);
+    opacity: .6
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1
+  }
+}
+
+@keyframes daiFloat {
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-3px)
+  }
+}
+
+@keyframes daiTwinkle {
+
+  0%,
+  100% {
+    transform: scale(.75) rotate(0);
+    opacity: .55
+  }
+
+  50% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 1
+  }
+}
+
+@keyframes daiBubble {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(.55)
+  }
+
+  25% {
+    opacity: .9
+  }
+
+  70% {
+    opacity: .45
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(7px, -27px, 0) scale(1.1)
+  }
+}
+
+@keyframes daiMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes daiTyping {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: .55
+  }
+
+  30% {
+    transform: translateY(-3px);
+    opacity: 1
+  }
+}
+
+/* Tablet */
+@media (max-width:900px) {
+
+  .dazzle-ai-launcher {
+    right: 18px;
+    bottom: 90px;
+  }
+
+  .dazzle-ai-panel {
+    top: 85px;
+    right: 18px;
+    bottom: 24px;
+
+    width: min(400px, calc(100vw - 36px));
+
+    height: auto;
+    min-height: 0;
+  }
+}
+
+/* Mobile: near-full-screen, safe area, no overflow */
+@media (max-width:600px) {
+  .dazzle-ai-launcher {
+    width: 40px;
+    height: 40px;
+    right: 14px;
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  .dazzle-ai-avatar {
+    width: 35px;
+    height: 45px
+  }
+
+  .dazzle-ai-tooltip {
+    display: none
+  }
+
+  .dazzle-ai-panel {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: translateY(18px);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .dazzle-ai-panel.is-open {
+    transform: none
+  }
+
+  .dai-header {
+    min-height: 70px;
+    padding: 12px 12px 12px 14px
+  }
+
+  .dai-header-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px
+  }
+
+  .dai-header-avatar img {
+    width: 37px;
+    height: 37px
+  }
+
+  .dai-icon-btn {
+    width: 36px;
+    height: 36px
+  }
+
+  .dai-messages {
+    padding: 14px 12px 10px
+  }
+
+  .dai-bubble-msg {
+    max-width: 88%;
+    font-size: 13px
+  }
+
+  .dai-composer {
+    padding: 8px 9px calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .dai-input {
+    font-size: 13px;
+    padding: 10px 7px
+  }
+
+  .dai-send {
+    width: 42px;
+    height: 42px
+  }
+
+  .dai-toast {
+    left: 14px;
+    right: 14px;
+    bottom: 92px;
+    max-width: none
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  .dazzle-ai-launcher::before,
+  .dazzle-ai-launcher::after,
+  .dazzle-ai-avatar,
+  .dai-bubble,
+  .dai-message,
+  .dai-typing span {
+    animation: none !important
+  }
+
+  .dazzle-ai-panel {
+    transition: none
+  }
+}
+
+@media (max-width:600px) {
+  body.dai-chat-lock {
+    overflow: hidden;
+    touch-action: none
+  }
+}
+
+/* =========================================================
+   DAZZLE AI — TOP LEVEL LAYER
+   ========================================================= */

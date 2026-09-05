@@ -1,0 +1,15 @@
+{
+  "name": "design-dazzle-studio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Design Dazzle Studio website with a Vercel-ready Dazzle AI serverless backend",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check api/chat.js && node --check assets/js/main.js && node --check assets/js/dazzle-ai.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}
